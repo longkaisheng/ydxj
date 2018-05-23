@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "editdialog": "../editdialog/editdialog"
+  }
+}

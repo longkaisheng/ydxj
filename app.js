@@ -35,6 +35,12 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    showtime:true,//显示时间
+    showlocation:true,//显示地址
+    word:"",//水印文字
+    img:"",//水印图片地址
+    alpha:"",//透明度
+    style:""//样式
   }
 })

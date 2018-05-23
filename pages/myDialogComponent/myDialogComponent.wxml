@@ -1,0 +1,21 @@
+<!--pages/myDialogComponent/myDialogComponent.wxml-->
+<cover-view 
+style='width: 100%;height: 100%;z-index:1'
+hidden='{{dialogHidden}}'>
+<cover-view 
+class='drawer_screen' 
+bindtap='cancleBtn' 
+/>
+<cover-view 
+class='drawer_box'>
+<cover-view 
+class="drawer_title" bindtap='fun1'>分辨率</cover-view>
+<cover-view 
+class="drawer_title" bindtap='fun2'>水印设置</cover-view>
+<cover-view 
+class="drawer_title" bindtap='fun3'>{{floor3}}</cover-view>
+<cover-view 
+class="drawer_title" bindtap='fun4'>{{floor4}}</cover-view>
+
+</cover-view>
+</cover-view>

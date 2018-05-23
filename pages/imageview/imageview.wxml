@@ -1,0 +1,2 @@
+<!--pages/imageview/imageview.wxml-->
+<image src='{{src}}'></image>

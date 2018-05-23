@@ -1,6 +1,7 @@
 // pages/camera/camera.js
 var bmap = require('../../libs/bmap-wx.js');
 var wxMarkerData = []; 
+var that=null;
 Page({
 
   /**
@@ -8,18 +9,25 @@ Page({
    */
   data: {
     markers: [],
-    latitude: '',
-    longitude: '',
+    latitude: '',//经度
+    longitude: '',//纬度
     rgcData: {} ,
-    adress:"",
-    src:""
+    adress:"",//地址
+    src:"../../img/img/aaa.jpg",//显示图片
+    quality:"normal",//相机等级,默认normal
+    position:"back",//前置后置back
+    flash:"off",//on off 闪光灯
+    isHidden: true,//dialog显示控制
+    isHidden2: true,//dialog2显示控制
+    longtap:false,//长按开关
+   
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
+     that = this;
     // 新建百度地图对象 
     var BMap = new bmap.BMapWX({
       ak: 'kyq22lejNlYBnIH67cKBvgX3y70h9Ae6'
@@ -48,6 +56,8 @@ Page({
       iconPath: '../../img/marker_red.png',
       iconTapPath: '../../img/marker_red.png'
     }); 
+    //1000s获取一次
+   
   },
 
   /**
@@ -103,19 +113,102 @@ Page({
     const ctx = wx.createCameraContext()
   //  setTimeout(function (){} ,500);
     console.log(this.data.latitude)
-   
     ctx.takePhoto({
-      quality: 'high',
+      quality: that.data.quality,
       success: (res) => {
         console.log("ss1");
         this.setData({
           src: res.tempImagePath
         })
-        wx.navigateTo({
-          url: 'image/image?imgurl=' + that.data.src + "&jindu=" + that.data.latitude + "&weidu=" + that.data.longitude + "&address=" + that.data.adress
-        })
-     
+        //跳转显示
+        // wx.navigateTo({
+        //   url: 'image/image?imgurl=' + that.data.src + "&jindu=" + that.data.latitude + "&weidu=" + that.data.longitude + "&address=" + that.data.adress
+        // })
       }
     })
+  },
+  showimg:function(){
+    wx.navigateTo({
+      url: '../imageview/imageview?imgurl=' + that.data.src
+         })
+  },
+  //设置前置
+  deviceposition:function(){
+    if (that.data.position ==="back"){
+      that.setData({
+        position:"front"
+      })
+    }else{
+      that.setData({
+        position: "back"
+      })
+    }
+  },
+  turnflash:function(){
+    if (that.data.flash === "on") {
+      that.setData({
+        flash: "off"
+      })
+    } else {
+      that.setData({
+        flash: "on"
+      })
+    }
+  } , 
+  showCompomentDialog: function () {
+    that.setData({
+      isHidden: false
+    })
+  },
+  fun1: function (e) {
+    that.setData({
+      isHidden2: false
+    })},
+
+  fun2: function (e) {
+    that.setData({
+      isHidden: false
+    })
+  },
+  fun3:function(e){
+ // console.log("1121")
+  this.turnflash();
+  },
+  fun4: function(e){
+  //console.log("1121")
+    if (this.data.longtap){
+      this.setData({
+        longtap: false
+      })
+    }else{
+      this.setData({
+        longtap: true
+      }) 
+    }
+
+  },
+  longTap:function(e){
+  //  console.log("1121")
+  if(this.data.longtap){
+
+    this.takePhoto()
+  }else{
+    console.log("1121")
   }
+  },
+  // dialog2相机质量设置
+  quality1: function (e) {
+    this.setData({
+      quality: "high"
+    }) },
+  quality2: function (e) {
+    this.setData({
+      quality: "normal"
+    }) },
+  quality3: function (e) { 
+    this.setData({
+      quality: "low"
+    })
+  }
+  //设置
 })

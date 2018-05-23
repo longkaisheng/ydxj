@@ -1,0 +1,28 @@
+<!--pages/addpic/addpic.wxml-->
+<view class='main'>
+<view class='title' >添加水印图片</view>
+<view style='height:60rpx' class='daoru'>
+<text>透明度：</text>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      {{array[index]}}
+    </view>
+  </picker>
+</view>
+<view style='height:60rpx' class='daoru'>
+<text>透明度：</text>
+  <picker bindchange="bindPickerChange2" value="{{index2}}" range="{{array2}}">
+    <view class="picker">
+      {{array2[index2]}}
+    </view>
+  </picker>
+</view>
+<view class='daoru'>
+<text>导入图片：</text>
+<image src='../../img/img/import_picture_icon.png' bindtap='choiceimg' ></image>
+<image src='../../img/img/remove_picture_icon.png' bindtap='clearimg'></image>
+</view>
+<view class='imgurl'>{{img}}</view>
+<button bindtap='save' >保存</button>
+</view>
+

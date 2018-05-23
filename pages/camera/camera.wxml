@@ -1,14 +1,44 @@
 <!--pages/camera/camera.wxml-->
 
-<camera device-position="back" flash="off" binderror="error" style="width: 100%; height:100%; position:relative;">
+<camera device-position="{{position}}" flash="{{flash}}" binderror="error" style="width: 100%; height:100%; position:relative;" bindtap='longTap'>
 <cover-view class='img' src="../../img/camera.png">
 <cover-image class='img2' src="../../img/camera.png"></cover-image>
 </cover-view>
 <cover-view>经度{{latitude}}</cover-view>
 <cover-view>纬度{{longitude}}</cover-view>
 <cover-view>地址:{{adress}}</cover-view>
-<cover-view class='bottom'>
+<dialogtwo
+bind:funfirst="quality1"
+bind:funtwo ="quality2"
+bind:funthird ="quality3"
+dialog-hidden="{{isHidden2}}
+/>
+<my-component-dialog
+bind:funfirst="fun1"
+bind:funtwo ="fun2"
+bind:funfour ="fun4"
+bind:funthird ="fun3"
+dialog-hidden="{{isHidden}}"
+/>
 
+<cover-view class='bottom'>
+    <!--设置  -->
+  <cover-view class='bottomcover'>
+    <cover-image class='imgbottom' src="../../img/img/seting_press.png"
+    bindtap="showCompomentDialog"></cover-image>
+    </cover-view>
+    <!--照相  -->
+    <cover-view class='bottomcover'>
+    <cover-image class='imgbottom' src="../../img/img/takepic_press.png" bindtap='takePhoto'></cover-image>
+    </cover-view>
+    <!--翻转镜头  -->
+    <cover-view class='bottomcover'>
+    <cover-image class='imgbottom' src="../../img/img/changecamera2.png" bindtap="deviceposition"></cover-image>
+    </cover-view>
+    <!--照片预览  -->
+    <cover-view class='bottomcover'>
+    <cover-image class='imgbottom4' src="{{src}}" bindtap='showimg'></cover-image>
+    </cover-view>
 </cover-view>
 </camera>
 

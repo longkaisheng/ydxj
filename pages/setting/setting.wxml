@@ -1,0 +1,35 @@
+<!--pages/setting/setting.wxml-->
+
+<!--水印编辑  -->
+    <view class='setting'>
+    <view class='back_setting'>返回</view>
+    <view class='title_setting'>水印设置</view>
+    <view class='item_setting'>
+    <image class="img_setting" src='../../img/img/add_words_icon.png'></image>
+    <view class='word_setting' bindtap='showedit' bindtap='showCompomentDialog'>添加文字</view>
+    </view>
+       <view class='item_setting'>
+    <image class="img_setting" src='../../img/img/add_watermark_picture.png'></image>
+    <view class='word_setting' >添加水印图片</view>
+    </view>
+    <view class='item_setting'>
+    <image class="img_setting" src='../../img/img/time_icon.png'></image>
+    <view class='word_setting'>显示时间</view>
+     <switch class='toggle'bindchange="switch1Change" checked='{{toggle1}}'></switch>
+    </view>
+    <view class='item_setting'>
+    <image class="img_setting"  src='../../img/img/gps_icon.png'></image>
+    <view class='word_setting'>GPS位置</view>
+    <switch class='toggle' bindchange="switch2Change" checked='{{toggle2}}'></switch>
+    </view>
+    <view class='toggle' class='setting_save' >保存</view>
+    </view>
+    <editdialog
+bind:determineevent="onMyEvent"
+bind:cancleevent="cancleBtn"
+dialog-hidden="{{isHidden}}"
+title-msg="{{titleMsg}}"
+input-hidden="{{inputHidden}}"
+cancle-btn="{{cancleBtn}}"
+input-place-halder="{{inputPlaceHolder}}"
+/>

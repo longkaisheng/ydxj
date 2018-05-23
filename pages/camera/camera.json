@@ -1,1 +1,6 @@
-{}
+{
+  "usingComponents": {
+    "my-component-dialog": "../myDialogComponent/myDialogComponent",
+    "dialogtwo": "../dialog2/dialog2"
+  }
+}

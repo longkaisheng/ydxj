@@ -1,14 +1,18 @@
 {
-  "pages":[
-        "pages/camera/camera",
-        "pages/camera/image/image",
+  "pages": [
+"pages/addpic/addpic",
+    "pages/setting/setting",
+    "pages/camera/camera",
+    "pages/camera/image/image",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/imageview/imageview"
+    
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   }
 }
