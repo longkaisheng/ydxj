@@ -1,6 +1,6 @@
 <!--pages/camera/camera.wxml-->
 
-<camera device-position="{{position}}" flash="{{flash}}" binderror="error" style="width: 100%; height:100%; position:relative;" bindtap='longTap'>
+<camera device-position="{{position}}" flash="{{flash}}" binderror="error" style="width: 100%; height:100%; position:relative;" >
 <cover-view class='img' src="../../img/camera.png">
 <cover-image class='img2' src="../../img/camera.png"></cover-image>
 </cover-view>
@@ -20,7 +20,7 @@ bind:funfour ="fun4"
 bind:funthird ="fun3"
 dialog-hidden="{{isHidden}}"
 />
-
+<cover-view class='click' bindtap='longTap'></cover-view>
 <cover-view class='bottom'>
     <!--设置  -->
   <cover-view class='bottomcover'>
@@ -40,6 +40,8 @@ dialog-hidden="{{isHidden}}"
     <cover-image class='imgbottom4' src="{{src}}" bindtap='showimg'></cover-image>
     </cover-view>
 </cover-view>
+
 </camera>
 
+<!-- <canvas class='myCanvas' canvas-id="myCanvas"  /> -->
 

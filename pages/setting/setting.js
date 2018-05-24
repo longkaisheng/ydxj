@@ -90,13 +90,17 @@ Page({
     }) 
   },
   save:function(){
-    wx.setStorageSync('showtime', this.data.toggle1);
-    wx.setStorageSync('showlocation', this.data.toggle2);
-    wx.setStorageSync('word', this.data.word);
-    wx.setStorageSync('img', this.data.img);
-    wx.navigateBack({
+    console.log("e.detail :", "111")
+    console.log("word :", this.data.toggle1+"," + this.data.toggle2 + this.data.word)
+    app.globalData.showtime = this.data.toggle1;
+    app.globalData.showlocation = this.data.toggle2;
+    app.globalData.word = this.data.word;
+   
+    console.log("word :", app.globalData.showtime + "," + app.globalData.showlocation + app.globalData.word)
+  //  wx.setStorageSync('img', this.data.img);
+  //   wx.navigateBack({
       
-    })
+  //   })
   },
   showCompomentDialog: function () {
 
@@ -119,9 +123,7 @@ Page({
   }
   ,
   onMyEvent: function (e) {
-
     var that = this;
-
     console.log("e.detail :", e.detail)
     that.setData({
       word : e.detail
@@ -130,6 +132,11 @@ Page({
     that.setData({
       isHidden: true,
       // inputHidden: false
+    })
+  },
+  setting:function(){
+    wx.navigateTo({
+      url: '../addpic/addpic',
     })
   }
 })

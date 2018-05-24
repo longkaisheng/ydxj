@@ -13,13 +13,14 @@ Page({
     longitude: '',//纬度
     rgcData: {} ,
     adress:"",//地址
-    src:"../../img/img/aaa.jpg",//显示图片
+src:"http://d.hiphotos.baidu.com/image/h%3D300/sign=bdac238024381f3081198ba999004c67/6159252dd42a2834171827b357b5c9ea14cebfcf.jpg",//显示图片
     quality:"normal",//相机等级,默认normal
     position:"back",//前置后置back
     flash:"off",//on off 闪光灯
     isHidden: true,//dialog显示控制
     isHidden2: true,//dialog2显示控制
     longtap:false,//长按开关
+    imgs:["http://d.hiphotos.baidu.com/image/h%3D300/sign=bdac238024381f3081198ba999004c67/6159252dd42a2834171827b357b5c9ea14cebfcf.jpg"]
    
   },
 
@@ -121,16 +122,24 @@ Page({
           src: res.tempImagePath
         })
         //跳转显示
-        // wx.navigateTo({
-        //   url: 'image/image?imgurl=' + that.data.src + "&jindu=" + that.data.latitude + "&weidu=" + that.data.longitude + "&address=" + that.data.adress
-        // })
+        wx.navigateTo({
+          url: 'image/image?imgurl=' + that.data.src + "&jindu=" + that.data.latitude + "&weidu=" + that.data.longitude + "&address=" + that.data.adress
+        })
       }
     })
   },
-  showimg:function(){
-    wx.navigateTo({
-      url: '../imageview/imageview?imgurl=' + that.data.src
-         })
+  showimg:function(){//预览图片
+    // wx.navigateTo({
+    //   url: '../imageview/imageview?imgurl=' + that.data.src
+    //      })
+    var imgs=[]
+    imgs[0] = that.data.src;
+    that.setData({
+      imgs: imgs
+    })
+    wx.previewImage({
+      urls: that.data.imgs,
+    })
   },
   //设置前置
   deviceposition:function(){
@@ -166,6 +175,9 @@ Page({
     })},
 
   fun2: function (e) {
+    wx.navigateTo({
+      url: '../setting/setting',
+    })
     that.setData({
       isHidden: false
     })

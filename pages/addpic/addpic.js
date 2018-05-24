@@ -1,4 +1,6 @@
 // pages/addpic/addpic.js
+var app=getApp();
+var that=null;
 Page({
 
   /**
@@ -18,7 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    that=this;
   },
 
   /**
@@ -72,8 +74,10 @@ Page({
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
+      alpha: that.data.array[e.detail.value]
     })
+    
   },
   bindPickerChange2: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -101,9 +105,13 @@ Page({
     })
   },
   save:function(){
-    wx.setStorageSync('img', this.data.img);
-    wx.setStorageSync('alpha', this.data.alpha);
-    wx.setStorageSync('style', this.data.style);
+    app.globalData.img = this.data.img;
+    app.globalData.alpha = this.data.alpha;
+    app.globalData.style = this.data.style;
+    
+    // wx.setStorageSync('img', this.data.img);
+    // wx.setStorageSync('alpha', this.data.alpha);
+    // wx.setStorageSync('style', this.data.style);
     wx.showToast({
       title: '保存成功',
     })

@@ -10,7 +10,7 @@
     </view>
        <view class='item_setting'>
     <image class="img_setting" src='../../img/img/add_watermark_picture.png'></image>
-    <view class='word_setting' >添加水印图片</view>
+    <view class='word_setting'  bindtap='setting'>添加水印图片</view>
     </view>
     <view class='item_setting'>
     <image class="img_setting" src='../../img/img/time_icon.png'></image>
@@ -22,7 +22,7 @@
     <view class='word_setting'>GPS位置</view>
     <switch class='toggle' bindchange="switch2Change" checked='{{toggle2}}'></switch>
     </view>
-    <view class='toggle' class='setting_save' >保存</view>
+    <view class='toggle' class='setting_save' bindtap='save' >保存</view>
     </view>
     <editdialog
 bind:determineevent="onMyEvent"

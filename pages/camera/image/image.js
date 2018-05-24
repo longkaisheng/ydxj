@@ -1,4 +1,6 @@
 // pages/camera/image/image.js
+var app=getApp();
+var util = require('../../../utils/util.js')
 Page({
 
   /**
@@ -81,20 +83,71 @@ Page({
   drawimage:function(){
     const ctx = wx.createCanvasContext('myCanvas')
     var that =this;
-    console.log(that.data.url) 
-  
+    var width=0;
+    var height=0;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res.model)
+        console.log(res.pixelRatio)
+       width=res.windowWidth;
+       height=res.windowHeight;
+        console.log(res.language)
+        console.log(res.version)
+        console.log(res.platform)
+      }
+    })
+    // console.log(that.data.url) 
+    // wx.getImageInfo({
+    //   src: 'that.data.url',
+    //   success: function (res) {
+    //     width=res.width;
+    //     height=res.height;
+    //   }
+    // })
    // if (that.data.url!=""){
      
-       ctx.drawImage(that.data.url, 0, 0)
-
-  
+    ctx.drawImage(that.data.url, 0, 0, width,height)
     //}
- 
+    // wx.showToast({
+    //   title: app.globalData.img,
+    // })
+    if (app.globalData.img===""){//不添加水印图片
+
+    }else{//添加水印图片 
+   
+      console.log(app.globalData.alpha)
+      ctx.setGlobalAlpha(app.globalData.alpha / 100)
+      if (app.globalData.style === "平铺") {
+        ctx.drawImage(app.globalData.img, 0, 0, width, height/2)
+      } else if (app.globalData.style === "拉伸") {
+        ctx.drawImage(app.globalData.img, 0, 0, width, height)
+      } else {
+        ctx.drawImage(app.globalData.img,0,0 )
+      }
+    }
+    ctx.setGlobalAlpha(1)
     ctx.setFontSize(20)
     ctx.setFillStyle('red')
-    ctx.fillText('经度:' + that.data.jindu, 20, 20)
-    ctx.fillText('纬度:' + that.data.weidu, 20, 40)
-    ctx.fillText('地址:' + that.data.address, 20, 60)
+    var i=3;
+    if (app.globalData.showlocation){
+      ctx.fillText('经度:' + that.data.jindu, 20, i*20)
+      i++;
+      ctx.fillText('纬度:' + that.data.weidu, 20, i * 20)
+      i++;
+      ctx.fillText('地址:' + that.data.address, 20, i * 20)
+      i++;
+    }
+    if (app.globalData.showtime) {
+     
+      ctx.fillText('时间:' + util.formatTime(new Date()), 20, i * 20)
+      i++;
+    }
+    if (app.globalData.word===""){
+     
+    }else{
+      ctx.fillText('备注:' + app.globalData.word, 20, i * 20)
+      i++;
+    }
     ctx.draw()
     this.saveimg()
   },

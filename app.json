@@ -1,12 +1,13 @@
 {
   "pages": [
-"pages/addpic/addpic",
-    "pages/setting/setting",
+
     "pages/camera/camera",
     "pages/camera/image/image",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/imageview/imageview"
+    "pages/imageview/imageview",
+    "pages/addpic/addpic",
+    "pages/setting/setting"
     
   ],
   "window": {
